@@ -1,6 +1,6 @@
 # Titanic Classification with PyTorch, ONNX, FastAPI, and Docker
 
-This project predicts Titanic passenger survival using a neural network built with PyTorch, exported to ONNX for efficient inference, and deployed as a FastAPI web service. The app is containerized with Docker and designed for automated deployment (CI/CD) via GitHub Actions to Docker Hub.
+This project predicts Titanic passenger survival using a neural network built with PyTorch, exported to ONNX for efficient inference, and deployed as a FastAPI web service. The app is containerized with Docker and features automated deployment (CI/CD) via GitHub Actions, which pushes the image to Docker Hub.
 
 ## Features
 
@@ -8,7 +8,7 @@ This project predicts Titanic passenger survival using a neural network built wi
 - **Model Export**: Trained model exported to ONNX format for fast, portable inference.
 - **API Service**: FastAPI app for serving predictions via a RESTful endpoint.
 - **Containerization**: Dockerfile for easy deployment anywhere.
-- **CI/CD Ready**: Intended for automated Docker builds and pushes using GitHub Actions.
+- **CI/CD Ready**: Automated Docker builds and pushes to Docker Hub using GitHub Actions.
 - **Notebook Workflow**: Jupyter notebooks for data preprocessing and model training.
 
 ## Project Structure
@@ -39,15 +39,24 @@ This project predicts Titanic passenger survival using a neural network built wi
 
 3. **Deployment**:  
    - The Dockerfile sets up the environment and runs the FastAPI app with Uvicorn.
-   - GitHub Actions can be configured to build and push the Docker image to Docker Hub automatically.
+   - **GitHub Actions is configured to automatically build and push the Docker image to Docker Hub on each push to the main branch.**
+
+## Docker Hub
+
+The latest Docker image is available at: [https://hub.docker.com/repository/docker/haaaaaaaaaax/onnx_image/general](https://hub.docker.com/repository/docker/haaaaaaaaaax/onnx_image/general)
+
+You can pull the image directly:
+```bash
+docker pull haaaaaaaaaax/onnx_image:latest
+```
 
 ## Quickstart
 
 ### 1. Build and Run with Docker
 
 ```bash
-docker build -t titanic-fastapi-app .
-docker run -p 8000:8000 titanic-fastapi-app
+docker build -t onnx_image .
+docker run -p 8000:8000 onnx_image
 ```
 
 ### 2. API Usage
@@ -77,7 +86,6 @@ Response:
 
 ## CI/CD (GitHub Actions)
 
-You can automate Docker builds and pushes to Docker Hub by adding a workflow YAML file in `.github/workflows/`.  
-*(Sample workflow can be provided if needed.)*
+This repository uses GitHub Actions to automate Docker builds and push the image to Docker Hub on every push to the main branch. The workflow file is located in `.github/workflows/`.
 
 ---
