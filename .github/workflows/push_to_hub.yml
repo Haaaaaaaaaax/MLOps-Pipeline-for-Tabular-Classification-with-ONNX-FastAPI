@@ -1,0 +1,26 @@
+name: Push to docker hub
+
+on:
+    push:
+        branches:
+            - main
+    
+    workflow_dispatch:
+
+
+jobs:
+    build:
+        runs-on: ubuntu-latest
+
+        steps:
+            - name: Cloning repo
+              uses: actions/checkout@v4
+
+            - name: Building image
+              run: docker build -t haaaaaaaaaax/onnx_image:latest .
+
+            - name: Docker login
+              run: docker login -u haaaaaaaaaax -p ${{ secrets.ONNX_IMAGE_TOKEN }}
+            
+            - name: Push to docker hub
+              run: docker push haaaaaaaaaax/onnx_image:latest
